@@ -14,7 +14,7 @@ export class HeroDetailComponent {
     this.getHero();
   }
   getHero(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = Number(this.route.snapshot.paramMap.get('id')); // gets the id from the url :id param
     this.heroService.getHero(id).subscribe((hero) => (this.hero = hero));
   }
 
