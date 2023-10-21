@@ -15,19 +15,27 @@ export class HeroesComponent {
     */
   }
   getHeroes(): void {
-    this.heroes = this.heroService.getHeroes();
+    // this.heroes = this.heroService.getHeroes()
+    this.heroService.getHeroes().subscribe((heroes) => (this.heroes = heroes)); // Fix to work with Observable class
+
+    /*
+    Code asynchronously awaits for the Observable to emit the array of heroes, 
+    which could happen now or several minutes from now. 
+    The subscribe() method passes the emitted array to the callback, 
+    which sets the component's heroes property
+    */
   }
   ngOnInit(): void {
-    this.getHeroes();
+    this.getHeroes()
   }
-  
+
   hero: Hero = {
     id: 1,
     name: 'Windstorm',
-  };
-  heroes: Hero[] = [];
-  selectedHero?: Hero;
+  }
+  heroes: Hero[] = []
+  selectedHero?: Hero
   onSelect(hero: Hero): void {
-    this.selectedHero = hero;
+    this.selectedHero = hero
   }
 }
