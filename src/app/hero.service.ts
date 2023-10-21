@@ -19,11 +19,17 @@ export class HeroService {
     /* of(HEROES) returns an Observable<Hero[]> that emits a single value, 
     the array of mock heroes.*/
     // This allows to work asynchronously
-    const heroes = of(HEROES)
+    const heroes = of(HEROES);
 
     //send a message when the heroes are fetched
-    this.messageService.add('HeroService: fetched heroes')
+    this.messageService.add('HeroService: fetched heroes');
 
-    return heroes
+    return heroes;
+  }
+
+  getHero(id: number): Observable<Hero> {
+    const hero = HEROES.find((h) => h.id === id)!;
+    this.messageService.add(`HeroService: fetched hero id=${id}`);
+    return of(hero);
   }
 }
